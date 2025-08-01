@@ -1,8 +1,7 @@
-// Generated typescript
 // 2025
-// Vitor (usuário) & Gemini
+// Vitor
 // AgriSynth
-// 01/08/2025 - CORRIGIDO
+// 01/08/2025
 //
 // DESCRIÇÃO: Arquivo de configuração para o Vite.
 // Define plugins, o servidor de desenvolvimento e o proxy para a API.
