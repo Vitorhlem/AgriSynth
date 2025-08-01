@@ -30,7 +30,6 @@ O projeto é construído sobre uma arquitetura de microsserviços para garantir 
 
 A escolha por microsserviços nos permite desenvolver e escalar cada parte do sistema de forma independente. O **API Gateway (Go)** atua como o cérebro central da orquestração, recebendo todas as requisições do frontend e decidindo para qual serviço de IA delegar a tarefa.
 
-```mermaid
 graph TD
     A[👨‍💻 Usuário] -- Interage com --> B[🌐 Frontend React];
     B -- Requisições HTTP/JSON --> C[🚀 API Gateway Go];
