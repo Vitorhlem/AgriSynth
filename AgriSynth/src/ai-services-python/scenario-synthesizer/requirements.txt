@@ -1,0 +1,31 @@
+# // Generated text
+# // 2025
+# // Vitor (usuário) & Gemini
+# // AgriSynth
+# // 01/08/2025
+# //
+# // DESCRIÇÃO: Lista de dependências Python para o scenario-synthesizer.
+
+# Framework para a API
+fastapi
+uvicorn[standard]
+
+# --- Dependências de IA Generativa (Geração de Cenários) ---
+# Framework da Hugging Face para usar LLMs (ex: Llama 3, Mistral)
+transformers
+# Biblioteca para otimizar a execução e carregamento de modelos grandes
+accelerate
+# PyTorch é a dependência principal para os modelos de IA
+torch
+
+# --- Dependências de ML Preditivo (Simulação de Resultados) ---
+# Biblioteca de machine learning para modelos preditivos clássicos
+scikit-learn
+# Biblioteca otimizada para Gradient Boosting, ótima para previsão tabular (ex: produtividade)
+xgboost
+# Bibliotecas fundamentais para manipulação de dados numéricos e tabelas
+pandas
+numpy
+
+# Biblioteca para manipulação de geometrias e dados geoespaciais
+shapely

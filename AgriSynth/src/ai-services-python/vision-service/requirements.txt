@@ -1,0 +1,29 @@
+# // Generated text
+# // 2025
+# // Vitor (usuário) & Gemini
+# // AgriSynth
+# // 01/08/2025
+# //
+# // DESCRIÇÃO: Lista de dependências Python para o vision-service.
+
+# Framework para a API
+fastapi
+
+# Servidor ASGI para rodar o FastAPI
+uvicorn[standard]
+
+# Biblioteca principal para Visão Computacional
+opencv-python-headless
+
+# Biblioteca para manipulação de arrays e matrizes, essencial para imagens
+numpy
+
+# Framework de Deep Learning para rodar os modelos
+torch
+torchvision
+
+# Biblioteca oficial para os modelos YOLO (usaremos para segmentação)
+ultralytics
+
+# Biblioteca para manipulação de imagens
+Pillow

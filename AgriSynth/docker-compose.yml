@@ -1,0 +1,112 @@
+# // Generated yaml
+# // 2025
+# // Vitor (usuário) & Gemini
+# // AgriSynth
+# // 01/08/2025
+# //
+# // DESCRIÇÃO: Orquestra a execução de todos os serviços do AgriSynth
+# // em um ambiente de desenvolvimento local usando Docker.
+
+version: '3.8'
+
+networks:
+  agrisynth-net:
+    driver: bridge
+
+services:
+  # --- BANCO DE DADOS ---
+  postgres-db:
+    image: postgis/postgis:15-3.3 # Imagem oficial com a extensão PostGIS
+    container_name: agrisynth-postgres
+    environment:
+      - POSTGRES_USER=agrisynth_user
+      - POSTGRES_PASSWORD=agrisynth_pass
+      - POSTGRES_DB=agrisynth_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - agrisynth-net
+    restart: unless-stopped
+
+  chroma-db:
+    image: ghcr.io/chroma-core/chroma:0.4.24 # Imagem oficial do ChromaDB
+    container_name: agrisynth-chroma
+    ports:
+      - "8000:8000"
+    networks:
+      - agrisynth-net
+    restart: unless-stopped
+
+  # --- BACKEND ---
+  api-gateway-go:
+    container_name: agrisynth-gateway
+    build:
+      context: ./src/api-gateway-go
+      dockerfile: Dockerfile # Assumiremos a criação deste arquivo em breve
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres-db
+    environment:
+      - DB_SOURCE=postgresql://agrisynth_user:agrisynth_pass@postgres-db:5432/agrisynth_db?sslmode=disable
+      - VISION_SERVICE_URL=http://vision-service:8001
+      - NLP_SERVICE_URL=http://nlp-service:8002
+      - SYNTHESIZER_SERVICE_URL=http://scenario-synthesizer:8003
+    networks:
+      - agrisynth-net
+    restart: on-failure
+
+  # --- MICROSSERVIÇOS DE IA ---
+  vision-service:
+    container_name: agrisynth-vision-service
+    build:
+      context: ./src/ai-services-python/vision-service
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    networks:
+      - agrisynth-net
+    restart: on-failure
+
+  nlp-service:
+    container_name: agrisynth-nlp-service
+    build:
+      context: ./src/ai-services-python/nlp-service
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    networks:
+      - agrisynth-net
+    restart: on-failure
+
+  scenario-synthesizer:
+    container_name: agrisynth-scenario-synthesizer
+    build:
+      context: ./src/ai-services-python/scenario-synthesizer
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8003"
+    networks:
+      - agrisynth-net
+    restart: on-failure
+
+  # --- FRONTEND ---
+  frontend-web-react:
+    container_name: agrisynth-frontend
+    build:
+      context: ./src/frontend-web-react
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./src/frontend-web-react:/app # Mapeia o código-fonte para live reload
+      - /app/node_modules # Evita que o node_modules local sobrescreva o do contêiner
+    networks:
+      - agrisynth-net
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+    driver: local

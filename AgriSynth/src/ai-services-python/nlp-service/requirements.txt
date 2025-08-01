@@ -1,0 +1,26 @@
+# // Generated text
+# // 2025
+# // Vitor (usuário) & Gemini
+# // AgriSynth
+# // 01/08/2025
+# //
+# // DESCRIÇÃO: Lista de dependências Python para o nlp-service.
+
+# Framework para a API
+fastapi
+uvicorn[standard]
+
+# Biblioteca de alta performance para extrair texto e dados de PDFs
+PyMuPDF
+
+# Biblioteca de NLP para reconhecimento de entidades e análise textual
+spacy
+
+# Modelo de linguagem em Português para o spaCy (eficiente para NER)
+# A instalação via link direto garante a versão correta do modelo.
+https://github.com/explosion/spacy-models/releases/download/pt_core_news_md-3.7.0/pt_core_news_md-3.7.0.tar.gz
+
+# Framework da Hugging Face para modelos de IA mais avançados (ex: LayoutLM)
+transformers
+# O PyTorch é uma dependência do transformers
+torch
