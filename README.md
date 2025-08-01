@@ -1,4 +1,4 @@
-# AgriSynth 🛰️🌱
+# AgriSynth (Ainda em testes, pode apresentar erros.) 🛰️🌱
 
 **AgriSynth** é uma plataforma de simulação baseada em IA que cria "gêmeos digitais" (Digital Twins) de terrenos agrícolas, permitindo que agrônomos e agricultores testem e gerem cenários de cultivo otimizados (clima, solo, insumos) antes de plantar uma única semente, transformando o risco da experimentação em uma vantagem estratégica.
 
