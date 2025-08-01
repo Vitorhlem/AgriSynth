@@ -26,6 +26,22 @@ O projeto é construído sobre uma arquitetura de microsserviços para garantir 
 
 ---
 
+### Diagrama e Fluxo de Dados da Arquitetura
+
+A escolha por microsserviços nos permite desenvolver e escalar cada parte do sistema de forma independente. O **API Gateway (Go)** atua como o cérebro central da orquestração, recebendo todas as requisições do frontend e decidindo para qual serviço de IA delegar a tarefa.
+
+```mermaid
+graph TD
+    A[👨‍💻 Usuário] -- Interage com --> B[🌐 Frontend React];
+    B -- Requisições HTTP/JSON --> C[🚀 API Gateway Go];
+    C -- Salva/Busca Dados --> D[🗄️ Banco de Dados PostgreSQL];
+    C -- Repassa PDF --> E[📄 NLP Service Python];
+    C -- Repassa Imagem --> F[🖼️ Vision Service Python];
+    C -- Envia Objetivos --> G[🧠 Scenario Synthesizer Python];
+    subgraph "Serviços de IA"
+        E; F; G;
+    end
+
 ## 🚀 Como Executar o Projeto
 
 Siga os passos abaixo para ter o ambiente completo do AgriSynth rodando em sua máquina.
