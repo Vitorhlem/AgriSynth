@@ -1,6 +1,5 @@
-# // Generated python
 # // 2025
-# // Vitor (usuário) & Gemini
+# // Vitor 
 # // AgriSynth
 # // 01/08/2025
 # //
